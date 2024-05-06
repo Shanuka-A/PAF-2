@@ -14,6 +14,8 @@ import { useNavigate } from "react-router";
 import EditUserModal from "../../../components/EditUserModal";
 import  Sidebar from  '../../../common/Sidebar'
 import Badge from "react-bootstrap/Badge";
+import WorkoutPlan from "../../WorkoutPlan";
+import MealPlan from "../../mealplan/MealPlan";
 
 const Profile = ({ currentUser }) => {
   const [user, setUser] = useState(currentUser);
@@ -137,6 +139,14 @@ const Profile = ({ currentUser }) => {
               >
                 Delete Profile
               </div>
+
+              <div
+                onClick={MealPlan}
+                className="rounded-md p-1 px-4 font-semibold cursor-pointer text-gray-100 bg-red-700 ml-auto"
+              >
+                WorkoutPlan
+              </div>
+
             </div>
           </div>
         </div>

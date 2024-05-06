@@ -12,6 +12,9 @@ import { getCurrentUser } from "../util/APIUtils";
 import { ACCESS_TOKEN } from "../constants";
 import PrivateRoute from "../common/PrivateRoute";
 import { ToastContainer, toast } from "react-toastify";
+import MealPlan from "../pages/mealplan/MealPlan";
+import WorkoutPlan from "../pages/WorkoutPlan";
+import WorkoutStatus from "../pages/WorkoutStatus";
 
 import "./App.css";
 import Users from "../pages/users/Users";
@@ -53,14 +56,16 @@ const App = () => {
       authenticated: false,
       currentUser: null
     });
-    toast("You're safely logged out!", { type: "success" ,position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark", });
+    toast("You're safely logged out!", {
+      type: "success", position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
 
   useEffect(() => {
@@ -131,6 +136,39 @@ const App = () => {
           />
 
           <Route
+            path="/profile"
+            element={
+              <PrivateRoute
+                authenticated={state.authenticated}
+                currentUser={state.currentUser}
+                component={MealPlan}
+              />
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute
+                authenticated={state.authenticated}
+                currentUser={state.currentUser}
+                component={WorkoutPlan}
+              />
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute
+                authenticated={state.authenticated}
+                currentUser={state.currentUser}
+                component={WorkoutStatus}
+              />
+            }
+          />
+
+          <Route
             path="/login"
             element={<Login authenticated={state.authenticated} />}
           />
@@ -138,10 +176,10 @@ const App = () => {
             path="/signup"
             element={<Signup authenticated={state.authenticated} />}
           />
-            <Route
-                path="/"
-                element={<Dashboard authenticated={state.authenticated} />}
-            />
+          <Route
+            path="/"
+            element={<Dashboard authenticated={state.authenticated} />}
+          />
           <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />
           <Route element={<NotFound />} />
 
